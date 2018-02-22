@@ -1,0 +1,6 @@
+# import Exercise from 'exercise.graphql'
+
+type User {
+  name: String!
+  exercises: [Exercise]
+}
