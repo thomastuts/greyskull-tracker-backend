@@ -3,25 +3,25 @@ import { importSchema } from 'graphql-import';
 import path from 'path';
 import bodyParser from 'body-parser';
 
-const typeDefs = importSchema(path.join(__dirname, 'schemas/_query.graphql'));
+import { getUser } from './repositories/users';
+import queryResolver from './resolvers/query';
+import mutationResolver from './resolvers/mutation';
+import userResolver from './resolvers/user';
+
+const typeDefs = importSchema(path.join(__dirname, 'schemas/_root.graphql'));
 
 const resolvers = {
-  Query: {
-    viewer: (_, { name }, context) => {
-      return context.user;
-    },
-  },
-  User: {
-    exercises: () => [],
-  }
+  ...queryResolver,
+  ...mutationResolver,
+  ...userResolver,
 };
 
-const authMiddleware = (req, res, next) => {
+const authMiddleware = async (req, res, next) => {
   const authToken = req.headers.authorization ? req.headers.authorization.replace('Bearer ', '') : null;
 
   if (authToken) {
     // TODO: fetch user
-    req.user = { name: authToken };
+    req.user = await getUser(1);
   }
 
   next();

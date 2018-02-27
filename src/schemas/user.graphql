@@ -6,7 +6,7 @@ enum WeightUnit {
 }
 
 type User {
-  name: String!
+  username: String!
   exercises: [Exercise]
   settings: UserSettings
 }

@@ -1,0 +1,10 @@
+# import User from 'user.graphql'
+# import Exercise from 'exercise.graphql'
+
+type Query {
+  viewer: User!
+}
+
+type Mutation {
+  updateExercise(id: Int!, weight: Float, name: String, upperBody: Boolean): Exercise
+}
