@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "babel src/ --out-dir build/ --presets=env --plugins=transform-runtime,transform-object-rest-spread && npm run copy:schemas",
-    "watch:src": "npm-run-all watch:js watch:schemas",
+    "watch:src": "run-p watch:js watch:schemas",
     "watch:js": "babel src/ --out-dir build/ --presets=env --plugins=transform-runtime,transform-object-rest-spread --watch",
     "watch:schemas": "chokidar 'src/schemas/**/*' -c 'npm run copy:schemas'",
     "copy:schemas": "cpy src/schemas/**/* build/schemas",
@@ -16,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "graphql-import": "^0.4.3",
     "graphql-yoga": "^1.3.3"
   },

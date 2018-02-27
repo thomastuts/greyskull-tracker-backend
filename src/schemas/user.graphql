@@ -1,6 +1,16 @@
 # import Exercise from 'exercise.graphql'
 
+enum WeightUnit {
+  KG
+  LBS
+}
+
 type User {
   name: String!
   exercises: [Exercise]
+  settings: UserSettings
+}
+
+type UserSettings {
+  unit: WeightUnit!
 }
