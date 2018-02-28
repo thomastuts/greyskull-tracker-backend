@@ -1,12 +1,14 @@
-import knex from '../connectors/pg';
+import db from '../connectors/massive';
 
-export const getAllExercisesForUser = (userId) => knex('exercises')
-  .where({ user_id: userId });
+export const getAllExercisesForUser = (userId) => db.exercises.find({ user_id: userId });
 
-export const updateExercise = async (exerciseId, { weight, name, upperBody }) => knex
-  .table('exercises')
-  .where({ id: exerciseId })
-  .first()
-  .update({ weight, name, upperBody })
-  .returning('*')
-  .then(result => result[0]);
+export const updateExercise = async (exerciseId, { weight, name, upperBody }) => db
+  .exercises
+  .update(
+    { id: exerciseId },
+    {
+      weight,
+      name,
+      upperBody
+    }
+  );

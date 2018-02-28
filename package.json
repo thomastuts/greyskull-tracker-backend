@@ -9,18 +9,20 @@
     "watch:js": "babel src/ --out-dir build/ --presets=env --plugins=transform-runtime,transform-object-rest-spread --watch",
     "watch:schemas": "chokidar 'src/schemas/**/*' -c 'npm run copy:schemas'",
     "copy:schemas": "cpy src/schemas/**/* build/schemas",
-    "start": "npm run build && node build/index",
-    "start:watch": "npm run build && nodemon -e js,graphql build/index.js"
+    "start": "npm run build && node -r dotenv/config build/index.js",
+    "start:watch": "npm run build && nodemon -e js,graphql -r dotenv/config build/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
     "dotenv": "^5.0.1",
     "graphql-import": "^0.4.3",
     "graphql-yoga": "^1.3.3",
-    "knex": "^0.14.4",
+    "jsonwebtoken": "^8.1.1",
+    "massive": "^4.7.0",
     "pg": "^7.4.1"
   },
   "devDependencies": {
