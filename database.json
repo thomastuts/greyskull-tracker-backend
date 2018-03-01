@@ -1,0 +1,9 @@
+{
+  "dev": {
+    "driver": "pg",
+    "database": {"ENV": "DATABASE_NAME"},
+    "user": {"ENV": "DATABASE_USER"},
+    "password": {"ENV": "DATABASE_PASSWORD"},
+    "migrationsDir": "./foopy"
+  }
+}

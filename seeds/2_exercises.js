@@ -17,7 +17,7 @@ const EXERCISES = [
 
 exports.EXERCISES = EXERCISES;
 
-exports.seed = async function (knex) {
-  await knex('exercises').del();
-  await knex('exercises').insert(EXERCISES);
+exports.seed = async function (db) {
+  await db.exercises.destroy();
+  await Promise.all(EXERCISES.map(exercise => db.exercises.insert(exercise)));
 };
